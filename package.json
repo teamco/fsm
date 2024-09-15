@@ -1,22 +1,44 @@
 {
-  "name": "fsm",
-  "version": "0.1.0",
-  "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "classnames": "^2.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/plugin-proposal-export-default-from": "^7.24.7",
+    "@babel/plugin-transform-class-properties": "^7.25.4",
+    "@babel/plugin-transform-private-methods": "^7.25.4",
+    "@babel/plugin-transform-react-jsx": "^7.25.2",
+    "@babel/plugin-transform-runtime": "^7.25.4",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@playwright/test": "^1.47.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "cspell": "^8.14.2",
+    "jest-slow-test-reporter": "^1.0.0",
+    "jest-transform-stub": "^2.0.0"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cspell": "cspell ./src/**/*.jsx ./src/**/*.js ./src/**/*.md",
+    "e2e:chrome": "playwright test --project=chromium",
+    "e2e:chrome:debug": "DEBUG=pw:browser playwright test --project=chromium",
+    "e2e:report": "playwright show-report __report__/e2e/current/html",
+    "unit:test": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --json --updateSnapshot --outputFile=./__report__/result.json --testLocationInResults --passWithNoTests",
+    "unit:test:coverage": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --updateSnapshot --passWithNoTests --coverage --json --testLocationInResults --outputFile=./__report__/coverage.json",
+    "single:suite": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --passWithNoTests ./src/components/Footer/__tests__/footer.test.js",
+    "single:profile": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --passWithNoTests ./src/pages/landing/profile/__tests__/profile.spec.js",
+    "single:test": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --passWithNoTests ./src/components/Common/Tags/__tests__/common.tags.test.js -t 'Hooked tags'"
   },
   "eslintConfig": {
     "extends": [

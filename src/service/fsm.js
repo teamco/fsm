@@ -14,22 +14,22 @@ const machine = {
         this.state = LIGHTS.RED;
     },
     transitions: {
-        RED: {
+        [LIGHTS.RED]: {
             activate() {
                 this.state = LIGHTS.YELLOW;
             }
         },
-        GREEN: {
+        [LIGHTS.GREEN]: {
             activate() {
                 this.state = LIGHTS.BLINK;
             }
         },
-        BLINK: {
+        [LIGHTS.BLINK]: {
             activate() {
                 this.state = LIGHTS.RED;
             }
         },
-        YELLOW: {
+        [LIGHTS.YELLOW]: {
             activate() {
                 this.state = LIGHTS.GREEN;
             }
