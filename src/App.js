@@ -9,6 +9,16 @@ import { useMachine } from './service/fsm';
 
 import styles from './app.module.css';
 
+/**
+ * The main component of the traffic light.
+ *
+ * @param {{[testId]: string, [lights]?: string[]}} props
+ * @prop {string} [testId] - The value for the `data-testid` attribute.
+ * @prop {string[]} [lights=[LIGHTS.RED, LIGHTS.YELLOW, LIGHTS.GREEN]] - The lights
+ * to display.
+ *
+ * @returns {React.ReactElement} The traffic light component.
+ */
 const App = (props) => {
     const { lights = [LIGHTS.RED, LIGHTS.YELLOW, LIGHTS.GREEN] } = props;
 
