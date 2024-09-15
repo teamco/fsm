@@ -7,7 +7,7 @@ import { LIGHTS, TIMEOUT } from './constants/statuses';
 
 import { useMachine } from './service/fsm';
 
-import styles from './App.module.css';
+import styles from './app.module.css';
 
 const App = (props) => {
     const { lights = [LIGHTS.RED, LIGHTS.YELLOW, LIGHTS.GREEN] } = props;
