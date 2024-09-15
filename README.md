@@ -1,4 +1,4 @@
-
+[![Playwright E2E](https://github.com/teamco/fsm/actions/workflows/playwright.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/playwright.yml)
 
 # Traffic Light Simulator
 =====================================
