@@ -55,7 +55,10 @@ const App = (props) => {
                     ))}
                 </div>
                 <Log logs={logs} />
-                <button onClick={intervalId ? stop : start}>{intervalId ? 'Clear' : 'Start'}</button>
+                <div>
+                  <div className={styles.counter}>Counter: {logs.length}</div>
+                  <button onClick={intervalId ? stop : start}>{intervalId ? 'Clear' : 'Start'}</button>
+                </div>
             </div>
         </div>
     );

@@ -1,6 +1,8 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import styles from './log.module.css';
+import { LIGHTS } from '../../constants/statuses';
 
 /**
  * Component representing a log of events.
@@ -16,7 +18,13 @@ export const Log = (props) => {
 
     return (
         <div className={styles.log} data-testid={testId}>
-            {logs?.length ? logs?.map((log, index) => <span key={index}>{log}</span>) : 'No Data'}
+            {logs?.length
+                ? logs?.map((log, index) => (
+                      <span className={classnames({ [styles.divider]: log === LIGHTS.RED })} key={index}>
+                          {log}
+                      </span>
+                  ))
+                : 'No Data'}
         </div>
     );
 };
