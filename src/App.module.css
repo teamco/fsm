@@ -1,0 +1,28 @@
+.app {
+  width: 100%;
+}
+
+.app > div {
+  position: absolute;
+  top: 50%; 
+  right: 50%;
+  transform: translate(50%, -50%);
+  list-style: none;
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  column-gap: 50px;
+  width: 400px;
+  height: 256px;
+  padding: 20px 10px;
+}
+
+.lights {
+  background-color: var(--main-bg-color);  
+  display: flex;
+  flex-direction: column;  
+  width: 100px;
+  border-radius: var(--main-radius);
+  align-items: center;
+  justify-content: center;
+}

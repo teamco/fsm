@@ -1,0 +1,44 @@
+div.light {
+    margin: 10px 0;
+}
+
+div.light span {
+    display: inline-block;
+    width: var(--light-dims);
+    height: var(--light-dims);
+    border-radius: calc(var(--light-dims) / 2);
+    border: var(--main-border);
+    transition: all 0.5s ease-in-out;
+}
+
+div.light.red span {
+    background: #ed166b;
+    background: linear-gradient(135deg, #ed166b, #f25b2e);
+}
+
+div.light.yellow.blink span,
+div.light.yellow span {
+    background: #f2e76f;
+    background: linear-gradient(135deg, #f2e76f, #f2d80f);
+}
+
+div.light.yellow.blink span {
+    animation: blinker 0.5s step-start infinite;
+}
+
+div.light.green span {
+    background: #59fcce;
+    background: linear-gradient(135deg, #59fcce, #3aa310);
+}
+
+div.light.red.blink span,
+div.light.green.blink span,
+span.disabled {
+    background: var(--disabled-bg-color) !important;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
