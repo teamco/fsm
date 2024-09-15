@@ -23,7 +23,7 @@ jobs:
 
       - name: Build project
         run: |
-          npm build
+          npm run build
 
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag hflow_img:$(date +%s)

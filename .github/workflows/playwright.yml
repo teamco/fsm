@@ -17,7 +17,7 @@ jobs:
     - name: Install wait-for
       run: npm install -g wait-port
     - name: Install Playwright Browsers
-      run: npm playwright install --with-deps
+      run: npx playwright install --with-deps
     - name: Run Environment & test
       run: |
         npm run start &

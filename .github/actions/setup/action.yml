@@ -1,11 +1,10 @@
 name: Shared Actions
 description: 'Composite run action'
-shell: bash
 inputs:
   node-version:
     required: false
     description: The version of Node to use.
-    default: "18.x"
+    default: "20.x"
 runs:
   using: "composite"
   steps:
@@ -19,12 +18,11 @@ runs:
     - name: Install dependencies
       shell: bash
       run: |
-        npm install --global yarn
-        yarn install
+        npm install --global npm
+        npm install
 
     - name: Check installed versions
       shell: bash
       run: |
         node -v
-        npm -v
-        yarn -v
+        npm -v    
