@@ -1,4 +1,7 @@
 [![Playwright E2E](https://github.com/teamco/fsm/actions/workflows/playwright.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/playwright.yml)
+[![CSpell CI](https://github.com/teamco/fsm/actions/workflows/cspell.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/cspell.yml)
+[![CICD.Build](https://github.com/teamco/fsm/actions/workflows/build.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/build.yml)
+[![Unit tests CI](https://github.com/teamco/fsm/actions/workflows/unit.test.js.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/unit.test.js.yml)
 
 # Traffic Light Simulator
 =====================================
