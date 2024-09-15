@@ -31,7 +31,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cspell": "cspell ./src/**/*.jsx ./src/**/*.js ./src/**/*.md",
-    "e2e:chrome": "playwright test --project=chromium",
+    "e2e:chrome": "UI_SERVER=http://localhost:3000 playwright test --project=chromium",
     "e2e:chrome:debug": "DEBUG=pw:browser playwright test --project=chromium",
     "e2e:report": "playwright show-report __report__/e2e/current/html",
     "unit:test": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --json --updateSnapshot --outputFile=./__report__/result.json --testLocationInResults --passWithNoTests",
