@@ -8,7 +8,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0 10px;
-    counter-reset: mega-step, mini-step;
+    counter-reset: mega-step 0;
 }
 
 .log span {
