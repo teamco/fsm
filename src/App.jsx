@@ -20,7 +20,7 @@ import styles from './app.module.css';
  * @returns {React.ReactElement} The traffic light component.
  */
 const App = (props) => {
-    const { lights = [LIGHTS.RED, LIGHTS.YELLOW, LIGHTS.GREEN] } = props;
+    const { lights = [LIGHTS.RED, LIGHTS.YELLOW, LIGHTS.GREEN], testId } = props;
 
     const [machine, setMachine] = useState(null);    
     const [intervalId, setIntervalId] = useState(null);
@@ -47,7 +47,7 @@ const App = (props) => {
     useMachine(setMachine);
 
     return (
-        <div className={styles.app}>
+        <div className={styles.app} data-testid={testId}>
             <div>
                 <div className={styles.lights}>
                     {lights.map((light) => (

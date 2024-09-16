@@ -21,7 +21,10 @@ export const Light = (props) => {
 
     return (
         <div
-            className={classnames(styles.light, styles[state?.toLowerCase()], styles[type?.toLowerCase()])}
+            className={classnames(styles.light, {
+                [styles[state?.toLowerCase()]]: state,
+                [styles[type?.toLowerCase()]]: type,
+            })}
             data-testid={testId}
         >
             <span className={classnames({ [styles.disabled]: disabled && state !== LIGHTS.BLINK })} />

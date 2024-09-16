@@ -14,10 +14,10 @@ import { LIGHTS } from '../../constants/statuses';
  * @returns {React.ReactElement} The log component.
  */
 export const Log = (props) => {
-    const { testId, logs = [] } = props;
+    const { className, testId, logs = [] } = props;
 
     return (
-        <div className={styles.log} data-testid={testId}>
+        <div className={classnames(styles.log, className)} data-testid={testId}>
             {logs?.length
                 ? logs?.map((log, index) => (
                       <span className={classnames({ [styles.divider]: log === LIGHTS.RED })} key={index}>

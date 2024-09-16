@@ -2,46 +2,103 @@ import { useEffect } from 'react';
 
 import { LIGHTS } from '../constants/statuses';
 
+/**
+ * @ignore
+ */
 const stub = () => {};
 
 /**
- * Machine representing the traffic light.
- * @type {object}
+ * @classdesc The TrafficLightMachine class represents a traffic light machine.
+ * @export
  */
-const machine = {
-    state: LIGHTS.RED,
+export class TrafficLightMachine {
+
+    /**
+     * @constructor
+     * @description The constructor sets up the initial state of the machine, which appears to be a traffic light machine based on the context.
+     * @param {string} [inintialState=LIGHTS.RED] - The initial state of the machine.
+     * @param {string} [namespace='fsm'] - The namespace of the machine.
+     */
+    constructor(inintialState = LIGHTS.RED, namespace = 'fsm') {
+        this.namespace = namespace;
+        this.state = inintialState;    
+        this.DEFAULT_STATE = inintialState;    
+    }    
+
+    /**
+     * @description Deactivate the traffic light machine, setting it to the default state.
+     * @type {function}
+     */
     deactivate() {
-        this.state = LIGHTS.RED;
-    },
-    transitions: {
+        this.state = this.DEFAULT_STATE;
+    }
+
+    transitions = {
+
         [LIGHTS.RED]: {
+
+            /**
+             * @description Activate the traffic light machine, setting it to the yellow state.
+             * @memberof TrafficLightMachine
+             * @type {function}
+             */
             activate() {
                 this.state = LIGHTS.YELLOW;
             }
         },
+
         [LIGHTS.GREEN]: {
+            
+            /**
+             * @description Activate the traffic light machine, setting it to the blinking state.
+             * @memberof TrafficLightMachine
+             * @type {function}
+             */
             activate() {
                 this.state = LIGHTS.BLINK;
             }
         },
+
         [LIGHTS.BLINK]: {
+            
+            /**
+             * @description Activate the traffic light machine, setting it to the red state.
+             * @memberof TrafficLightMachine
+             * @type {function}
+             */
             activate() {
                 this.state = LIGHTS.RED;
             }
         },
+
         [LIGHTS.YELLOW]: {
+            
+            /**
+             * @description Activate the traffic light machine, setting it to the green state.
+             * @memberof TrafficLightMachine
+             * @type {function}
+             */
             activate() {
                 this.state = LIGHTS.GREEN;
             }
         }
-    },
+    }
+
+    /**
+     * @description Dispatch an action to the traffic light machine.
+     * @function dispatch
+     * @type {function}
+     * @param {string} actionName - The name of the action to dispatch.
+     * @memberof TrafficLightMachine
+     * @instance
+     */
     dispatch(actionName) {
-        const action = this.transitions[this.state][actionName];
+        const action = this.transitions[this.state]?.[actionName];
 
         if (action) {
             action.call(this);
         } else {
-            console.log('Invalid action');
+            throw new Error(`Invalid action: ${actionName}`);
         }
     }
 };
@@ -49,10 +106,11 @@ const machine = {
 /**
  * Use the machine.
  * @export
- * @param {function} setMachine - The machine to use.
+ * @param {function} setter - The machine to use.
+ * @param {string} state - The initial state of the machine.
  */
-export const useMachine = (setMachine = stub) => {
+export const useMachine = (setter = stub, state = LIGHTS.RED) => {
     useEffect(() => {
-        setMachine(Object.create(machine));
-    }, [setMachine]);
+        typeof setter === 'function' && setter && setter(new TrafficLightMachine(state, 'fsm'));
+    }, [setter, state]);
 };

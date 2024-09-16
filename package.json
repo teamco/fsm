@@ -22,8 +22,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "cspell": "^8.14.2",
+    "jest-html-reporters": "^3.1.7",
+    "jest-junit": "^16.0.0",
     "jest-slow-test-reporter": "^1.0.0",
-    "jest-transform-stub": "^2.0.0"
+    "jest-transform-stub": "^2.0.0",
+    "mutationobserver-shim": "^0.3.7"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
@@ -34,11 +37,11 @@
     "e2e:chrome": "playwright test --project=chromium",
     "e2e:chrome:debug": "DEBUG=pw:browser playwright test --project=chromium",
     "e2e:report": "playwright show-report __report__/e2e/current/html",
-    "unit:test": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --json --updateSnapshot --outputFile=./__report__/result.json --testLocationInResults --passWithNoTests",
-    "unit:test:coverage": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --updateSnapshot --passWithNoTests --coverage --json --testLocationInResults --outputFile=./__report__/coverage.json",
-    "single:suite": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --passWithNoTests ./src/components/Footer/__tests__/footer.test.js",
-    "single:profile": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --passWithNoTests ./src/pages/landing/profile/__tests__/profile.spec.js",
-    "single:test": "cross-env TS_NODE_TRANSPILE_ONLY=yes jest --passWithNoTests ./src/components/Common/Tags/__tests__/common.tags.test.js -t 'Hooked tags'"
+    "unit:test": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --json --updateSnapshot --outputFile=./__report__/result.json --testLocationInResults --passWithNoTests",
+    "unit:test:coverage": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --updateSnapshot --passWithNoTests --coverage --json --testLocationInResults --outputFile=./__report__/coverage.json",
+    "single:suite": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --passWithNoTests ./src/__tests__/app.test.js",
+    "single:profile": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --passWithNoTests ./src/pages/landing/profile/__tests__/profile.spec.js",
+    "single:test": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --passWithNoTests ./src/components/Common/Tags/__tests__/common.tags.test.js -t 'Hooked tags'"
   },
   "eslintConfig": {
     "extends": [

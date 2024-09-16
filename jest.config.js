@@ -1,13 +1,6 @@
 const ts = +(new Date);
 
 const GLOBALS_MOCK = {
-  DEBUG: true,
-  HOME_ENV: false,
-  IS_SECURED: false,
-  FNDSEC_SSO_CONFIG: 'FNDSEC_SSO_CONFIG',
-  SECURED_SERVER: 'SECURED_SERVER',
-  DEFAULT_SERVER: 'DEFAULT_SERVER',
-  PROXIED_SERVER: 'PROXIED_SERVER'
 };
 
 module.exports = {
@@ -99,9 +92,6 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|sass|scss|stylus)$': '<rootDir>/node_modules/identity-obj-proxy/src/index.js',
     '^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
-    '^umi$': require.resolve('@umijs/max'),
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^@@/(.*)$': '<rootDir>/src/.umi/$1',
     '^__tests__/(.*)': '<rootDir>/__tests__/$1'
   }
 };
