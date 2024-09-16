@@ -15,7 +15,6 @@ module.exports = {
   },
   setupFiles: [ require('path').resolve('./__tests__/config/globals.jest') ],
   transform: {
-    '^.+\\.(ts|tsx)?$': ['ts-jest', { useESM: true }],
     '^.+\\.(js)?$': require('path').resolve('./__tests__/config/babel.jest'),
     '^.+\\.svg$': require('path').resolve('./__tests__/config/svgTransform.js'),
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub'
