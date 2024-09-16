@@ -16,13 +16,13 @@ export class TrafficLightMachine {
     /**
      * @constructor
      * @description The constructor sets up the initial state of the machine, which appears to be a traffic light machine based on the context.
-     * @param {string} [inintialState=LIGHTS.RED] - The initial state of the machine.
+     * @param {string} [initialState=LIGHTS.RED] - The initial state of the machine.
      * @param {string} [namespace='fsm'] - The namespace of the machine.
      */
-    constructor(inintialState = LIGHTS.RED, namespace = 'fsm') {
+    constructor(initialState = LIGHTS.RED, namespace = 'fsm') {
         this.namespace = namespace;
-        this.state = inintialState;    
-        this.DEFAULT_STATE = inintialState;    
+        this.state = initialState;    
+        this.DEFAULT_STATE = initialState;    
     }    
 
     /**
