@@ -27,9 +27,10 @@ yarn-error.log*
 /__report__/**
 /__report__/e2e/**
 !/__report__/e2e/.keep
-/__report__/e2e/jest/**
-!/__report__/e2e/jest/.keep
+/__report__/jest/**
+!/__report__/jest/.keep
+/__report__/junit/**
+!/__report__/junit/.keep
 /__report__/e2e/archive/**
 !/__report__/e2e/archive/.keep
-!/__tests__/__snapshots__/router.test.js.snap
 
