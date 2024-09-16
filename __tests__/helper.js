@@ -106,3 +106,5 @@ export function getByTestId(container, id, ...rest) {
     }
     return result[0];
 }
+
+export const delay = (ms = 1000) => new Promise((resolve) => setTimeout(resolve, ms));
