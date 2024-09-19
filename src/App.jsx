@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 
-import Light from './components/light';
+import Process from './components/process';
 import Log from './components/log';
+import Arrows from './components/arrows';
 
-import { LIGHTS, TIMEOUT } from './constants/statuses';
+import { PROCESSES, TIMEOUT } from './constants/statuses';
 
-import { useMachine } from './service/fsm';
+import { useMachine } from './service/fsm.process';
 
 import styles from './app.module.css';
 
 /**
- * The main component of the traffic light.
+ * The main component of the process.
  *
- * @param {{[testId]: string, [lights]?: string[]}} props
+ * @param {{[testId]: string, [processes]?: string[]}} props
  * @prop {string} [testId] - The value for the `data-testid` attribute.
- * @prop {string[]} [lights=[LIGHTS.RED, LIGHTS.YELLOW, LIGHTS.GREEN]] - The lights
+ * @prop {string[]} [processes=[PROCESSES.PENDING, PROCESSES.PROCESSING, PROCESSES.SHIPPED, PROCESSES.DELIVERED]] - The lights
  * to display.
  *
- * @returns {React.ReactElement} The traffic light component.
+ * @returns {React.ReactElement} The traffic process component.
  */
 const App = (props) => {
-    const { lights = [LIGHTS.RED, LIGHTS.YELLOW, LIGHTS.GREEN], testId } = props;
+    const { processes = [PROCESSES.PENDING, PROCESSES.PROCESSING, PROCESSES.SHIPPED, PROCESSES.DELIVERED], testId } =
+        props;
 
-    const [machine, setMachine] = useState(null);    
+    const [machine, setMachine] = useState(null);
     const [intervalId, setIntervalId] = useState(null);
     const [logs, setLogs] = useState([]);
 
@@ -34,12 +36,12 @@ const App = (props) => {
             setLogs((prevState) => [...prevState, machine?.state]);
         }, TIMEOUT);
 
-        setIntervalId(ts);        
+        setIntervalId(ts);
     };
 
     const stop = () => {
         window.clearInterval(intervalId);
-        setIntervalId(null);        
+        setIntervalId(null);
         setLogs([]);
         machine.deactivate();
     };
@@ -49,15 +51,24 @@ const App = (props) => {
     return (
         <div className={styles.app} data-testid={testId}>
             <div>
-                <div className={styles.lights}>
-                    {lights.map((light) => (
-                        <Light key={light} state={machine?.state} type={light} />
-                    ))}
+                <div className={styles.processes}>
+                    <Process
+                        style={{ height: 20, top: 30, right: 20 }}
+                        key={PROCESSES.CANCELLED}
+                        state={machine?.state}
+                        type={PROCESSES.CANCELLED}
+                    />
+                    <Arrows />
+                    <div>
+                        {processes.map((process) => (
+                            <Process key={process} state={machine?.state} type={process} />
+                        ))}
+                    </div>
                 </div>
                 <Log logs={logs} />
                 <div>
-                  <div className={styles.counter}>Counter: {logs.length}</div>
-                  <button onClick={intervalId ? stop : start}>{intervalId ? 'Clear' : 'Start'}</button>
+                    <div className={styles.counter}>Counter: {logs.length}</div>
+                    <button onClick={intervalId ? stop : start}>{intervalId ? 'Clear' : 'Start'}</button>
                 </div>
             </div>
         </div>

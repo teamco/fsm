@@ -1,0 +1,19 @@
+.process {
+    margin: 10px 0;
+    background-color: var(--main-bg-color);
+    border-radius: var(--main-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    width: 140px;
+    position: relative;
+}
+
+.process:first-child {
+    margin-top: 0;
+}
+
+.process span {
+    color: #fff;    
+}

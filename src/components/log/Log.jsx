@@ -1,8 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
+import { PROCESSES } from '../../constants/statuses';
+
 import styles from './log.module.css';
-import { LIGHTS } from '../../constants/statuses';
 
 /**
  * Component representing a log of events.
@@ -20,7 +21,7 @@ export const Log = (props) => {
         <div className={classnames(styles.log, className)} data-testid={testId}>
             {logs?.length
                 ? logs?.map((log, index) => (
-                      <span className={classnames({ [styles.divider]: log === LIGHTS.RED })} key={index}>
+                      <span className={classnames({ [styles.divider]: log === PROCESSES.PENDING })} key={index}>
                           {log}
                       </span>
                   ))

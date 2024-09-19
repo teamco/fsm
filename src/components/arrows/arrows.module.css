@@ -1,0 +1,51 @@
+.arrows {
+    width: 150px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrows > div {
+    position: absolute;
+    animation: slide 4s linear infinite;
+}
+
+.arrows > div > div {
+    width: 20px;
+    height: 20px;
+    border: 10px solid;
+    border-color: black transparent transparent black;
+    transform: rotate(-45deg);
+}
+
+.arrows .delay1 {
+    animation-delay: 1s;
+}
+
+.arrows .delay2 {
+    animation-delay: 2s;
+}
+
+.arrows .delay3 {    
+    animation-delay: 3s;
+}
+
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateX(35px);
+    }
+    20% {
+        opacity: 1;
+        transform: translateX(20px);
+    }
+    80% {
+        opacity: 1;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-35px);
+    }
+}
