@@ -2,6 +2,9 @@
 [![CSpell CI](https://github.com/teamco/fsm/actions/workflows/cspell.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/cspell.yml)
 [![CICD.Build](https://github.com/teamco/fsm/actions/workflows/build.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/build.yml)
 [![Unit tests CI](https://github.com/teamco/fsm/actions/workflows/unit.test.js.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/unit.test.js.yml)
+[![Deploy static content to Pages](https://github.com/teamco/fsm/actions/workflows/deploy.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/deploy.yml)
+
+[Demo](https://teamco.github.io/fsm/)
 
 # ProcessMachine Simulator
 
