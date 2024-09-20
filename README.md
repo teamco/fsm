@@ -5,6 +5,8 @@
 
 [Demo](https://teamco.github.io/fsm/)
 
+<img width="781" alt="Screenshot 2024-09-20 at 17 39 37" src="https://github.com/user-attachments/assets/12a6b07e-9641-4684-ba58-b52fef640cc2">
+
 # ProcessMachine Simulator
 
 =====================================
