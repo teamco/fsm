@@ -7,6 +7,9 @@
 
 <img width="781" alt="Screenshot 2024-09-20 at 17 39 37" src="https://github.com/user-attachments/assets/12a6b07e-9641-4684-ba58-b52fef640cc2">
 
+<img width="781" alt="Screenshot 2024-09-20 at 23 55 27" src="https://github.com/user-attachments/assets/a3fb5b8c-8dac-48e7-9e58-0068fe61e634">
+
+
 # ProcessMachine Simulator
 
 =====================================
