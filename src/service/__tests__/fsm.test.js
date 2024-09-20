@@ -1,121 +1,121 @@
-import { LIGHTS } from '../../constants/statuses';
+import { PROCESSES } from '../../constants/statuses';
 
-import { TrafficLightMachine } from '../fsm';
+import { ProcessMachine } from '../fsm.process';
 
-describe('TrafficLightMachine Suite', () => {
-    it('Should initialize with default state RED when no initial state is provided', () => {
-        const machine = new TrafficLightMachine();
-        expect(machine.state).toBe(LIGHTS.RED);
+describe('ProcessMachine Suite', () => {
+    it('Should initialize with default state PENDING when no initial state is provided', () => {
+        const machine = new ProcessMachine();
+        expect(machine.state).toBe(PROCESSES.PENDING);
     });
 
     it('Should initialize with custom initial state when provided', () => {
-        const customInitialState = LIGHTS.GREEN;
-        const machine = new TrafficLightMachine(customInitialState);
+        const customInitialState = PROCESSES.PROCESSING;
+        const machine = new ProcessMachine(customInitialState);
         expect(machine.state).toBe(customInitialState);
     });
 
     it('Should reset to default state when deactivated', () => {
-        const machine = new TrafficLightMachine();
-        machine.state = LIGHTS.GREEN;
+        const machine = new ProcessMachine();
+        machine.state = PROCESSES.SHIPPED;
         machine.deactivate();
-        expect(machine.state).toBe(LIGHTS.RED);
+        expect(machine.state).toBe(PROCESSES.PENDING);
     });
 
-    it('Should transition from RED to YELLOW when "activate" action is dispatched', () => {
-        const machine = new TrafficLightMachine();
+    it('Should transition from PENDING to PROCESSING when "activate" action is dispatched', () => {
+        const machine = new ProcessMachine();
         machine.dispatch('activate');
-        expect(machine.state).toBe(LIGHTS.YELLOW);
+        expect(machine.state).toBe(PROCESSES.PROCESSING);
     });
 
-    it('Should transition from YELLOW to GREEN when "activate" action is dispatched', () => {
-        const machine = new TrafficLightMachine(LIGHTS.YELLOW);
+    it('Should transition from PROCESSING to SHIPPED when "activate" action is dispatched', () => {
+        const machine = new ProcessMachine(PROCESSES.PROCESSING);
         machine.dispatch('activate');
-        expect(machine.state).toBe(LIGHTS.GREEN);
+        expect(machine.state).toBe(PROCESSES.SHIPPED);
     });
 
-    it('Should transition from GREEN to BLINK when activating', () => {
-        const machine = new TrafficLightMachine(LIGHTS.GREEN);
+    it('Should transition from SHIPPED to DELIVERED when activating', () => {
+        const machine = new ProcessMachine(PROCESSES.SHIPPED);
         machine.dispatch('activate');
-        expect(machine.state).toBe(LIGHTS.BLINK);
+        expect(machine.state).toBe(PROCESSES.DELIVERED);
     });
 
-    it('Should transition from BLINK to RED when activating', () => {
-        const machine = new TrafficLightMachine(LIGHTS.BLINK);
+    it('Should transition from DELIVERED to DEFAULT when activating', () => {
+        const machine = new ProcessMachine(PROCESSES.DELIVERED);
         machine.dispatch('activate');
-        expect(machine.state).toBe(LIGHTS.RED);
+        expect(machine.state).toBe(PROCESSES.DELIVERED);
     });
 
-    it('Should deactivate TrafficLightMachine when already in default state', () => {
-        const machine = new TrafficLightMachine();
+    it('Should deactivate ProcessMachine when already in default state', () => {
+        const machine = new ProcessMachine();
         machine.deactivate();
-        expect(machine.state).toBe(LIGHTS.RED);
+        expect(machine.state).toBe(PROCESSES.PENDING);
     });
 
-    it('Should deactivate TrafficLightMachine when already in custom default state', () => {
-        const machine = new TrafficLightMachine(LIGHTS.GREEN);
+    it('Should deactivate ProcessMachine when already in custom default state', () => {
+        const machine = new ProcessMachine(PROCESSES.PROCESSING);
         machine.deactivate();
-        expect(machine.state).toBe(LIGHTS.GREEN);
+        expect(machine.state).toBe(PROCESSES.PROCESSING);
     });
 
     it('Should assign default namespace "fsm" when no namespace is provided', () => {
-        const machine = new TrafficLightMachine();
+        const machine = new ProcessMachine();
         expect(machine.namespace).toBe('fsm');
     });
 
     it('Should assign custom namespace when no namespace is provided', () => {
-        const machine = new TrafficLightMachine(LIGHTS.RED, 'customNamespace');
+        const machine = new ProcessMachine(PROCESSES.PENDING, 'customNamespace');
         expect(machine.namespace).toBe('customNamespace');
     });
 
     it('Should persist state changes across multiple dispatches', () => {
-        const machine = new TrafficLightMachine();
-        expect(machine.state).toBe(LIGHTS.RED);
+        const machine = new ProcessMachine();
+        expect(machine.state).toBe(PROCESSES.PENDING);
 
         machine.dispatch('activate');
-        expect(machine.state).toBe(LIGHTS.YELLOW);
+        expect(machine.state).toBe(PROCESSES.PROCESSING);
 
         machine.dispatch('activate');
-        expect(machine.state).toBe(LIGHTS.GREEN);
+        expect(machine.state).toBe(PROCESSES.SHIPPED);
 
         machine.dispatch('activate');
-        expect(machine.state).toBe(LIGHTS.BLINK);
+        expect(machine.state).toBe(PROCESSES.DELIVERED);
 
         machine.dispatch('activate');
-        expect(machine.state).toBe(LIGHTS.RED);
+        expect(machine.state).toBe(PROCESSES.PENDING);
     });
 
     it('Should transition states correctly when actions are dispatched', () => {
-        const machine1 = new TrafficLightMachine();
-        const machine2 = new TrafficLightMachine(LIGHTS.GREEN);
+        const machine1 = new ProcessMachine();
+        const machine2 = new ProcessMachine(PROCESSES.PROCESSING);
 
         machine1.dispatch('activate');
-        expect(machine1.state).toBe(LIGHTS.YELLOW);
+        expect(machine1.state).toBe(PROCESSES.PROCESSING);
 
         machine2.dispatch('activate');
-        expect(machine2.state).toBe(LIGHTS.BLINK);
+        expect(machine2.state).toBe(PROCESSES.SHIPPED);
 
         machine1.dispatch('activate');
-        expect(machine1.state).toBe(LIGHTS.GREEN);
+        expect(machine1.state).toBe(PROCESSES.SHIPPED);
 
         machine2.dispatch('activate');
-        expect(machine2.state).toBe(LIGHTS.RED);
+        expect(machine2.state).toBe(PROCESSES.DELIVERED);
     });
 
     it('Should isolate state changes between instances when multiple instances are created', () => {
-        const machine1 = new TrafficLightMachine();
-        const machine2 = new TrafficLightMachine();
+        const machine1 = new ProcessMachine();
+        const machine2 = new ProcessMachine();
 
         machine1.dispatch('activate');
-        expect(machine1.state).toBe(LIGHTS.YELLOW);
-        expect(machine2.state).toBe(LIGHTS.RED);
+        expect(machine1.state).toBe(PROCESSES.PROCESSING);
+        expect(machine2.state).toBe(PROCESSES.PENDING);
 
         machine2.dispatch('activate');
-        expect(machine1.state).toBe(LIGHTS.YELLOW);
-        expect(machine2.state).toBe(LIGHTS.YELLOW);
+        expect(machine1.state).toBe(PROCESSES.PROCESSING);
+        expect(machine2.state).toBe(PROCESSES.PROCESSING);
     });
 
     it('Should throw an error when dispatching an invalid action', () => {
-        const machine = new TrafficLightMachine();
+        const machine = new ProcessMachine();
         expect(() => machine.dispatch('invalidAction')).toThrow('Invalid action: invalidAction');
     });
 });

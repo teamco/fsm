@@ -1,10 +1,9 @@
-import React from 'react';
 import { cleanup } from '@testing-library/react';
 
 import { expectations, mocksWorkaround } from '../../../../__tests__/helper.js';
 
 import { Log } from '../Log.jsx';
-import { LIGHTS } from '../../../constants/statuses.js';
+import { PROCESSES } from '../../../constants/statuses.js';
 
 const testId = 'logId';
 const className = 'logId-className';
@@ -46,17 +45,17 @@ describe('components/log/Log.jsx', () => {
   });
 
   it('Render log with divider', async () => {
-    const props = { testId, logs: ['1', '2', LIGHTS.RED] };
+    const props = { testId, logs: ['1', '2', PROCESSES.PENDING] };
 
     const { component } = await expectations(Log, testId, props, true);
 
     expect(component).toHaveTextContent('1');
     expect(component).toHaveTextContent('2');
-    expect(component).toHaveTextContent(LIGHTS.RED);
+    expect(component).toHaveTextContent(PROCESSES.PENDING);
 
     const divider = component.querySelector('span.divider');
     expect(divider).not.toBeNull();
-    expect(divider).toHaveTextContent(LIGHTS.RED);
+    expect(divider).toHaveTextContent(PROCESSES.PENDING);
   });
 
   

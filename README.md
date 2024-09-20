@@ -3,10 +3,10 @@
 [![CICD.Build](https://github.com/teamco/fsm/actions/workflows/build.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/build.yml)
 [![Unit tests CI](https://github.com/teamco/fsm/actions/workflows/unit.test.js.yml/badge.svg)](https://github.com/teamco/fsm/actions/workflows/unit.test.js.yml)
 
-# Traffic Light Simulator
+# ProcessMachine Simulator
 =====================================
 
-This project simulates a traffic light system using a finite state machine (FSM). The simulator allows you to display a sequence of lights and logs the state of the traffic light at each interval.
+This project simulates a Shipping system using a finite state machine (FSM). The simulator allows you to display a sequence of lights and logs the state of the shipping at each interval.
 
 ## Getting Started
 ---------------
@@ -21,7 +21,7 @@ The simulator allows you to customize the sequence of lights displayed. You can 
 ## Logging
 ------
 
-The simulator logs the state of the traffic light at each interval. You can access the log by calling the `getLogs` function.
+The simulator logs the state of the shipping at each interval. You can access the log by calling the `getLogs` function.
 
 ## Example Usage
 -------------
