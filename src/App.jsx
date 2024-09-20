@@ -24,9 +24,11 @@ const App = (props) => {
     const { processes = [PROCESSES.PENDING, PROCESSES.PROCESSING, PROCESSES.SHIPPED, PROCESSES.DELIVERED], testId } =
         props;
 
+    const DEFAULT_STATE = processes[0];
+
     const [machine, setMachine] = useState(null);
     const [intervalId, setIntervalId] = useState(null);
-    const [logs, setLogs] = useState([processes[0]]);
+    const [logs, setLogs] = useState([DEFAULT_STATE]);
 
     /**
      * @description Starts the finite state machine by setting an interval to dispatch the `activate` action.
@@ -58,7 +60,7 @@ const App = (props) => {
         machine.deactivate();
     };
 
-    useMachine(setMachine, processes[0]);
+    useMachine(setMachine, DEFAULT_STATE);
 
     return (
         <div className={styles.app} data-testid={testId}>
