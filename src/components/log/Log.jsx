@@ -18,14 +18,17 @@ export const Log = (props) => {
     const { className, testId, logs = [] } = props;
 
     return (
-        <div className={classnames(styles.log, className)} data-testid={testId}>
-            {logs?.length
-                ? logs?.map((log, index) => (
-                      <span className={classnames({ [styles.divider]: log === PROCESSES.PENDING })} key={index}>
-                          {log}
-                      </span>
-                  ))
-                : 'No Data'}
+        <div className={styles.wrapper}>
+            <div className={styles.counter}>Counter: {logs.length}</div>
+            <div className={classnames(styles.log, className)} data-testid={testId}>
+                {logs?.length
+                    ? logs?.map((log, index) => (
+                          <span className={classnames({ [styles.divider]: log === PROCESSES.PENDING })} key={index}>
+                              {log}
+                          </span>
+                      ))
+                    : 'Log: No Data'}
+            </div>
         </div>
     );
 };

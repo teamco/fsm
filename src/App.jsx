@@ -18,7 +18,7 @@ import styles from './app.module.css';
  * @prop {string[]} [processes=[PROCESSES.PENDING, PROCESSES.PROCESSING, PROCESSES.SHIPPED, PROCESSES.DELIVERED]] - The lights
  * to display.
  *
- * @returns {React.ReactElement} The traffic process component.
+ * @returns {React.ReactElement} The process component.
  */
 const App = (props) => {
     const { processes = [PROCESSES.PENDING, PROCESSES.PROCESSING, PROCESSES.SHIPPED, PROCESSES.DELIVERED], testId } =
@@ -26,19 +26,31 @@ const App = (props) => {
 
     const [machine, setMachine] = useState(null);
     const [intervalId, setIntervalId] = useState(null);
-    const [logs, setLogs] = useState([]);
+    const [logs, setLogs] = useState([processes[0]]);
 
+    /**
+     * @description Starts the finite state machine by setting an interval to dispatch the `activate` action.
+     * @function
+     * @returns {void}
+     */
     const start = () => {
         if (!machine) return console.error('Unable to start FSM');
 
-        const ts = window.setInterval(() => {
-            machine.dispatch('activate');
-            setLogs((prevState) => [...prevState, machine?.state]);
-        }, TIMEOUT);
+        const ts = window.setInterval(next, TIMEOUT);
 
         setIntervalId(ts);
     };
 
+    const next = () => {
+        machine.dispatch('activate');
+        setLogs((prevState) => [...prevState, machine?.state]);
+    };
+
+    /**
+     * @description Stops the finite state machine by clearing the interval, resetting the logs, and deactivating the machine.
+     * @function
+     * @returns {void}
+     */
     const stop = () => {
         window.clearInterval(intervalId);
         setIntervalId(null);
@@ -46,17 +58,18 @@ const App = (props) => {
         machine.deactivate();
     };
 
-    useMachine(setMachine);
+    useMachine(setMachine, processes[0]);
 
     return (
         <div className={styles.app} data-testid={testId}>
             <div>
                 <div className={styles.processes}>
                     <Process
-                        style={{ height: 20, top: 30, right: 20 }}
-                        key={PROCESSES.CANCELLED}
+                        className={styles.cancel}
+                        key={PROCESSES.CANCELING}
                         state={machine?.state}
-                        type={PROCESSES.CANCELLED}
+                        disabled={!machine?.cancelable}
+                        type={PROCESSES.CANCELING}
                     />
                     <Arrows />
                     <div>
@@ -66,9 +79,16 @@ const App = (props) => {
                     </div>
                 </div>
                 <Log logs={logs} />
-                <div>
-                    <div className={styles.counter}>Counter: {logs.length}</div>
-                    <button onClick={intervalId ? stop : start}>{intervalId ? 'Clear' : 'Start'}</button>
+            </div>
+            <div className={styles.actions}>
+                <hr />
+                <div className={styles.info}>
+                    <button onClick={intervalId ? stop : start}>{intervalId ? 'Stop' : 'Auto'}</button>
+                    <button onClick={next}>Next</button>
+                    <button onClick={stop} disabled={!machine?.cancelable}>
+                        Cancel
+                    </button>
+                    <button onClick={stop}>Reset</button>
                 </div>
             </div>
         </div>

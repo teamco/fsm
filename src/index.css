@@ -4,6 +4,7 @@
   --light-dims: 60px;
   --main-border: 1px solid #000;
   --main-radius: 4px;
+  --main-selected-color: coral;
 }
 
 body {

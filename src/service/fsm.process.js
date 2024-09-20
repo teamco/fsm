@@ -21,7 +21,7 @@ export class ProcessMachine {
     constructor(initialState = PROCESSES.PENDING, namespace = 'fsm') {
         this.namespace = namespace;
         this.state = initialState;
-        this.cancelable = false;
+        this.cancelable = true;
         this.DEFAULT_STATE = initialState;
     }
 
@@ -31,7 +31,7 @@ export class ProcessMachine {
      */
     deactivate() {
         this.state = this.DEFAULT_STATE;
-        this.cancelable = false;
+        this.cancelable = true;
     }
 
     transitions = {
@@ -56,7 +56,7 @@ export class ProcessMachine {
              */
             activate() {
                 this.state = PROCESSES.SHIPPED;
-                this.cancelable = true;
+                this.cancelable = false;
             }
         },
 
@@ -80,19 +80,19 @@ export class ProcessMachine {
              */
             activate() {
                 this.state = this.DEFAULT_STATE;
-                this.cancelable = false;
+                this.cancelable = true;
             }
         },
 
-        [PROCESSES.CANCELLED]: {
+        [PROCESSES.CANCELING]: {
             /**
-             * @description Activate the  process machine, setting it to the DEFAULT_STATE.
+             * @description Activate the  process machine, setting it to the CANCELING.
              * @memberof ProcessMachine
              * @type {function}
              */
             activate() {
                 this.state = this.DEFAULT_STATE;
-                this.cancelable = false;
+                this.cancelable = true;
             }
         }
     };

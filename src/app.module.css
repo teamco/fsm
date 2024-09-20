@@ -4,22 +4,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-.app > div {
+.app > div:first-child {
     display: flex;
     align-items: flex-start;
-    column-gap: 50px;    
+    column-gap: 50px;
     height: 256px;
     padding: 20px 10px;
 }
 
 .processes {
-    display: flex;        
+    display: flex;
 }
 
 .processes > div:first-child {
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .cancelable {
@@ -29,6 +30,23 @@
     margin-top: 20px;
 }
 
-.counter {
-    white-space: nowrap;
+.actions {
+    width: 50%;
+    text-align: center;
+}
+
+.actions div {
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+}
+
+.cancel {
+    height: 20px;
+    top: 30px;
+    right: 20px;
+}
+
+.cancel::after {
+    display: none;
 }

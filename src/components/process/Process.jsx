@@ -16,20 +16,18 @@ import styles from './process.module.css';
  * @returns {React.ReactElement} The process component.
  */
 export const Process = (props) => {
-    const { testId, type, state, style } = props;
-
-    const disabled = state !== type;
+    const { testId, type, state, className, disabled } = props;
 
     return (
         <div
-            className={classnames(styles.process, {
-                [styles[state?.toLowerCase()]]: state,
-                [styles[type?.toLowerCase()]]: type,
-            })}
-            style={style}
+            className={classnames(styles.process, className, {
+                [styles[state?.toLowerCase()]]: !!state,
+                [styles[type?.toLowerCase()]]: !!type,
+                [styles.disabled]: typeof disabled === 'undefined' ? state !== type : disabled
+            })}            
             data-testid={testId}
         >
-            <span className={classnames({ [styles.disabled]: disabled })}>{type}</span>
+            <span>{type}</span>
         </div>
     );
 };

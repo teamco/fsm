@@ -10,10 +10,42 @@
     position: relative;
 }
 
+.process::after {
+    content: '';
+    height: 10px;
+    width: 2px;
+    background: var(--main-selected-color);
+    position: absolute;
+    bottom: -10px;
+}
 .process:first-child {
     margin-top: 0;
 }
+.process:last-child::after {
+    display: none;
+}
 
 .process span {
-    color: #fff;    
+    color: #fff;
+}
+
+.process.pending {
+    outline: 3px solid var(--main-selected-color);
+}
+.process.processing {
+    outline: 3px solid var(--main-selected-color);
+}
+.process.shipped {
+    outline: 3px solid var(--main-selected-color);
+}
+.process.delivered {
+    outline: 3px solid var(--main-selected-color);
+}
+.process.canceled {
+    
+}
+
+.process.disabled {
+    outline: none !important;
+    opacity: 0.4;
 }
