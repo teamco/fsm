@@ -39,7 +39,7 @@ import { useMachine } from './useMachine';
 const machine = useMachine();
 machine.start();
 
-// To customize the sequence of lights
+// To customize the sequence of process
 const machine = useMachine([
     PROCESSES.PENDING, 
     PROCESSES.PROCESSING, 
