@@ -1,4 +1,5 @@
 {
+  "homepage": "https://teamco.github.io/fsm/",
   "dependencies": {
     "classnames": "^2.5.1",
     "react": "^18.3.1",
@@ -31,7 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "react-scripts --openssl-legacy-provider build --base=/fsm/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cspell": "cspell ./src/**/*.jsx ./src/**/*.js ./src/**/*.md",
