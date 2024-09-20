@@ -1,8 +1,9 @@
 export const SELECTORS = {
   landing: '#root > div[class^="app"]',
-  redLight: 'div[class*="red"] span:not([class*=disabled])',
-  yellowLight: 'div[class*="yellow"] span:not([class*=disabled])',
-  blinkLight: 'div[class*="blink"] span:not([class*=disabled])',
-  greenLight: 'div[class*="green"] span:not([class*=disabled])',
+  pending: 'div[class*="pending"]:not([class*=cancel]):not([class*=disabled])',
+  processing: 'div[class*="processing"]:not([class*=cancel]):not([class*=disabled])',
+  shipped: 'div[class*="shipped"]:not([class*=disabled])',
+  delivered: 'div[class*="delivered"]:not([class*=disabled])',
+  cancel: 'div[class*="cancel"]:not([class*=disabled])',
   counter: 'div[class*="counter"]',
 };

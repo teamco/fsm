@@ -36,6 +36,7 @@
     "eject": "react-scripts eject",
     "cspell": "cspell ./src/**/*.jsx ./src/**/*.js ./src/**/*.md",
     "e2e:chrome": "playwright test --project=chromium",
+    "e2e:chrome:local": "UI_SERVER=http://127.0.0.1:3000 playwright test --project=chromium",
     "e2e:chrome:debug": "DEBUG=pw:browser playwright test --project=chromium",
     "e2e:report": "playwright show-report __report__/e2e/current/html",
     "unit:test": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --json --updateSnapshot --outputFile=./__report__/result.json --testLocationInResults --passWithNoTests",

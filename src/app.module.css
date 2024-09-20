@@ -45,6 +45,7 @@
     height: 20px;
     top: 30px;
     right: 20px;
+    outline: 3px dashed var(--main-selected-color) !important;
 }
 
 .cancel::after {

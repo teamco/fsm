@@ -85,12 +85,12 @@ const App = (props) => {
             <div className={styles.actions}>
                 <hr />
                 <div className={styles.info}>
-                    <button onClick={intervalId ? stop : start}>{intervalId ? 'Stop' : 'Auto'}</button>
-                    <button onClick={next}>Next</button>
-                    <button onClick={stop} disabled={!machine?.cancelable}>
+                    <button key={'auto'} onClick={intervalId ? stop : start}>{intervalId ? 'Stop' : 'Auto'}</button>
+                    <button key={'next'} onClick={next}>Next</button>
+                    <button key={'cancel'} onClick={stop} disabled={!machine?.cancelable}>
                         Cancel
                     </button>
-                    <button onClick={stop}>Reset</button>
+                    <button key={'reset'} onClick={stop}>Reset</button>
                 </div>
             </div>
         </div>
