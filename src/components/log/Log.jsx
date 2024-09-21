@@ -23,7 +23,7 @@ export const Log = (props) => {
             <div className={classnames(styles.log, className)} data-testid={testId}>
                 {logs?.length
                     ? logs?.map((log, index) => (
-                          <span className={classnames({ [styles.divider]: log === PROCESSES.PENDING })} key={index}>
+                          <span className={classnames({ [styles.divider]: log === PROCESSES.DELIVERED })} key={index}>
                               {log}
                           </span>
                       ))

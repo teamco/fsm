@@ -6,7 +6,7 @@ import { initializeApp } from 'firebase/app';
 
 import { getAuth } from 'firebase/auth';
 
-import { getFirestore, doc, collection, query, where, getDocs, orderBy, limit, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
 import { getAnalytics } from 'firebase/analytics';
 
@@ -37,62 +37,6 @@ export const getRef = ({ collectionPath, document }) => {
     }
 
     throw new Error('Document must be defined.');
-};
-
-/**
- * Read all from collection
- * @export
- * @async
- * @param collectionPath
- */
-export const fbReadAll = async ({ collectionPath }) => {
-    return getDocs(collection(db, collectionPath)).catch((error) => {
-        console.error(`All: ${collectionPath} \n`, error);
-        return error;
-    });
-};
-
-/**
- * @export
- * @async
- * @description Read from collection by reference.
- * @param colRef
- * @return {Promise<unknown>}
- */
-export const fbReadByRef = async ({ colRef }) => {
-    const snapshot = await getDoc(colRef);
-    return snapshot.data();
-};
-
-/**
- * Read from collection by condition
- * @async
- * @export
- * @param collectionPath
- * @param field
- * @param [operator]
- * @param [optional]
- * @param value
- */
-export const fbReadBy = async ({ field, value, collectionPath, operator = '==', optional = {} }) => {
-    const { order, orderDirection = 'desc' } = optional;
-
-    const queryParams = [collection(db, collectionPath), where(field, operator, value)];
-
-    if (order) {
-        queryParams.push(orderBy(order, orderDirection));
-    }
-
-    if (optional?.limit) {
-        queryParams.push(limit(optional.limit));
-    }
-
-    const q = query.apply(null, queryParams);
-
-    return getDocs(q).catch((error) => {
-        console.error(error.message);
-        return error;
-    });
 };
 
 /**

@@ -29,7 +29,7 @@ const App = (props) => {
     const [machine, setMachine] = useState(null);
     const [loading, setLoading] = useState(false);
     const [intervalId, setIntervalId] = useState(null);
-    const [logs, setLogs] = useState([DEFAULT_STATE]);
+    const [logs, setLogs] = useState([]);
 
     /**
      * @description Starts the finite state machine by setting an interval to dispatch the `activate` action.
