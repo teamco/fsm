@@ -27,6 +27,7 @@ const App = (props) => {
     const DEFAULT_STATE = processes[0];
 
     const [machine, setMachine] = useState(null);
+    const [loading, setLoading] = useState(false);
     const [intervalId, setIntervalId] = useState(null);
     const [logs, setLogs] = useState([DEFAULT_STATE]);
 
@@ -60,7 +61,7 @@ const App = (props) => {
         machine.deactivate();
     };
 
-    useMachine(setMachine, DEFAULT_STATE);
+    useMachine(setMachine, setLoading, DEFAULT_STATE);
 
     return (
         <div className={styles.app} data-testid={testId}>
@@ -85,12 +86,18 @@ const App = (props) => {
             <div className={styles.actions}>
                 <hr />
                 <div className={styles.info}>
-                    <button key={'auto'} onClick={intervalId ? stop : start}>{intervalId ? 'Stop' : 'Auto'}</button>
-                    <button key={'next'} onClick={next}>Next</button>
-                    <button key={'cancel'} onClick={stop} disabled={!machine?.cancelable}>
+                    <button key={'auto'} disabled={loading} onClick={intervalId ? stop : start}>
+                        {intervalId ? 'Stop' : 'Auto'}
+                    </button>
+                    <button key={'next'} disabled={loading} onClick={next}>
+                        Next
+                    </button>
+                    <button key={'cancel'} onClick={stop} disabled={loading || !machine?.cancelable}>
                         Cancel
                     </button>
-                    <button key={'reset'} onClick={stop}>Reset</button>
+                    <button key={'reset'} disabled={loading} onClick={stop}>
+                        Reset
+                    </button>
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@
   "homepage": "https://teamco.github.io/fsm/",
   "dependencies": {
     "classnames": "^2.5.1",
+    "firebase": "^10.13.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "^5.0.0",
@@ -34,7 +35,7 @@
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build --base=/fsm/",
-    "deploy" : "npm run build&&gh-pages -d build",
+    "deploy": "npm run build&&gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cspell": "cspell ./src/**/*.jsx ./src/**/*.js ./src/**/*.md",
@@ -42,7 +43,7 @@
     "e2e:chrome:local": "UI_SERVER=http://127.0.0.1:3000 playwright test --project=chromium",
     "e2e:chrome:debug": "DEBUG=pw:browser playwright test --project=chromium",
     "e2e:report": "playwright show-report __report__/e2e/current/html",
-    "unit:test": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --json --updateSnapshot --outputFile=./__report__/result.json --testLocationInResults --passWithNoTests",
+    "unit:test": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --json --updateSnapshot --outputFile=./__report__/result.json --testLocationInResults --passWithNoTests --reporters=jest-html-reporters",
     "unit:test:coverage": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test -- --coverage . --json --testLocationInResults --outputFile=./__report__/coverage.json",
     "single:suite": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --passWithNoTests ./src/__tests__/app.test.js",
     "single:profile": "TS_NODE_TRANSPILE_ONLY=yes react-scripts test --passWithNoTests ./src/pages/landing/profile/__tests__/profile.spec.js",
