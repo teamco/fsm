@@ -8,14 +8,9 @@ import { getAuth } from 'firebase/auth';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-import { getAnalytics } from 'firebase/analytics';
-
 import { firebaseConfig } from './config/firebase.config';
 
 const firebaseApp = initializeApp(firebaseConfig);
-
-// Initialize Analytics and get a reference to the service
-export const analytics = getAnalytics(firebaseApp);
 
 const db = getFirestore(firebaseApp);
 
